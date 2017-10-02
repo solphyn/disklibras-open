@@ -1,0 +1,6 @@
+{
+  "name": "opentokrtc-v2",
+  "dependencies": {
+    "theme": "tef-components/theme#0.2.68"
+  }
+}

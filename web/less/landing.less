@@ -1,0 +1,217 @@
+// Components
+@import '../bower_components/utils/reset.less';
+@import '../bower_components/utils/mixins.less';
+@import '../bower_components/modals/modals.less';
+
+@import 'base.less';
+@import 'icons.less';
+@import 'buttons.less';
+
+body {
+  background-color: #FFF;
+  color: @text;
+  overflow: hidden;
+}
+
+.main {
+
+  display: flex;
+  .flex-direction(column);
+  height: 100%;
+
+  header {
+    padding-bottom: 25px;
+    @media @smartphones {
+      padding-bottom: 0px;
+    }
+  }
+
+  h1, h2, h3 {
+    font-family: @muliRegularFont, arial;
+    padding: 0;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: @muliRegularFont, arial;
+    font-size: 48px;
+    @media @smartphones {
+      font-size: 36px;
+    }
+    font-weight: 200;
+    line-height: 60px;
+    color: @blueText;
+    margin: 10px 0;
+  }
+
+  h2 {
+    font-size: 20px;
+    @media @smartphones {
+      font-size: 14px;
+    }
+    font-weight: 400;
+    margin: 6px 0;
+    color: @grey4;
+  }
+
+  h3 {
+    font-size: 14px;
+    @media @smartphones {
+      font-size: 12px;
+    }
+    margin: 5px 0;
+    font-weight: 600;
+    color: @grey3;
+    padding: 10px;
+  }
+
+  form {
+    width: 100%;
+    margin: 20px 0 0 0;
+    @media @smartphones {
+      margin: 5px 0 40px 0;
+    }
+    @media @smartphonesLandscape {
+      margin: 7px 0 40px 0;
+    }
+    text-align: center;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .error-text {
+      display: block;
+      font-size: 14px;
+      color: #C40D49;
+      opacity: 0;
+
+      @media @smartphones {
+        font-size: 12px;
+      }
+
+      @media @smartphonesLandscape {
+        font-size: 9px;
+      }
+    }
+
+    .error-terms, .error-adult {
+      display: inline-block;
+    }
+
+    .error-title {
+      margin-top: 10px;
+    }
+
+    .error-room {
+      margin: 0 356px 0 0;
+      @media @smartphones {
+        margin: 0 100px 0 0;
+      }
+    }
+
+    &.error {
+      .show, .error-title {
+        transition: opacity @transitionTime;
+        opacity: 1;
+      }
+    }
+
+    .btn {
+      margin-top: 10px;
+    }
+
+    .tb.btn {
+      font-family: @muliRegularFont, arial;
+      font-size: 16px;
+      @media @smartphones {
+        font-size: 14px;
+      }
+      font-weight: normal;
+      line-height: 50px;
+      border-radius: 0;
+      height: 50px;
+    }
+
+    .text-input {
+      @media @smartphones {
+        font-size: 14px;
+      }
+      @media @smartphonesLandscape {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    }
+  }
+
+  .safari-plug {
+    display: none;
+    margin-top: 24px;
+    a {
+      color: @blueText;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    @media @smartphones {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    @media @smartphonesLandscape {
+      font-size: 12px;
+      line-height: 12px;
+    }
+    margin: 0;
+    padding: 0;
+  }
+
+  section {
+    display: flex;
+    .align-items(center);
+    .flex-direction(column);
+    .justify-content(center);
+    .flex(1);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+}
+
+.tc-modal.contract {
+  header {
+    font-size: 24px;
+    @media @smartphones {
+      font-size: 20px;
+    }
+    color: @blueText;
+    padding-bottom: 10px;
+  }
+
+  p {
+    font-family: "Muli", arial;
+    color: @text;
+    font-weight: 300;
+    font-size: 16px;
+
+    @media @smartphones {
+      font-size: 12px;
+    }
+
+    a {
+      color: @blueText;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  }
+
+  .btn {
+    font-size: 14px;
+    margin: 0px;
+  }
+}

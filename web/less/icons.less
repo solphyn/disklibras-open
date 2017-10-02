@@ -1,0 +1,301 @@
+[data-icon] {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+}
+
+[data-icon]:after {
+  content: '';
+  display: none;
+}
+
+[data-icon="close_white"] {
+  background-image: url("/images/icons/close_white.svg");
+}
+
+[data-icon="close_gray"] {
+  background-image: url("/images/icons/close_gray.svg");
+}
+
+[data-icon="record"] {
+  background-image: url("/images/icons/record.svg");
+}
+
+[data-icon="collapse"] {
+  background-image: url("/images/icons/collapse.svg");
+}
+
+[data-icon="collapse"]:after {
+  background-image: url("/images/icons/expand.svg");
+}
+
+/* Layouts */
+
+[data-layout-type="float"] {
+  background-image: url("/images/icons/layouts/float.svg");
+}
+
+[data-layout-type="float"]:hover, [data-layout-type="float"]:after {
+  background-image: url("/images/icons/layouts/float_hover.svg");
+}
+
+[data-layout-type="float"]:disabled {
+  background-image: url("/images/icons/layouts/float_disabled.svg");
+}
+
+[data-layout-type="f2f_horizontal"] {
+  background-image: url("/images/icons/layouts/f2f_horizontal.svg");
+}
+
+[data-layout-type="f2f_horizontal"]:hover, [data-layout-type="f2f_horizontal"]:after {
+  background-image: url("/images/icons/layouts/f2f_horizontal_hover.svg");
+}
+
+[data-layout-type="f2f_horizontal"]:disabled {
+  background-image: url("/images/icons/layouts/f2f_horizontal_disabled.svg");
+}
+
+[data-layout-type="f2f_vertical"] {
+  background-image: url("/images/icons/layouts/f2f_vertical.svg");
+}
+
+[data-layout-type="f2f_vertical"]:hover, [data-layout-type="f2f_vertical"]:after {
+  background-image: url("/images/icons/layouts/f2f_vertical_hover.svg");
+}
+
+[data-layout-type="f2f_vertical"]:disabled {
+  background-image: url("/images/icons/layouts/f2f_vertical_disabled.svg");
+}
+
+[data-layout-type="grid"] {
+  background-image: url("/images/icons/layouts/grid.svg");
+}
+
+[data-layout-type="grid"]:hover, [data-layout-type="grid"]:after {
+  background-image: url("/images/icons/layouts/grid_hover.svg");
+}
+
+[data-layout-type="grid"]:disabled {
+  background-image: url("/images/icons/layouts/grid_disabled.svg");
+}
+
+[data-layout-type="hangout_horizontal"] {
+  background-image: url("/images/icons/layouts/hangout_horizontal.svg");
+}
+
+[data-layout-type="hangout_horizontal"]:hover, [data-layout-type="hangout_horizontal"]:after {
+  background-image: url("/images/icons/layouts/hangout_horizontal_hover.svg");
+}
+
+[data-layout-type="hangout_horizontal"]:disabled {
+  background-image: url("/images/icons/layouts/hangout_horizontal_disabled.svg");
+}
+
+[data-layout-type="hangout_vertical"] {
+  background-image: url("/images/icons/layouts/hangout_vertical.svg");
+}
+
+[data-layout-type="hangout_vertical"]:hover, [data-layout-type="hangout_vertical"]:after {
+  background-image: url("/images/icons/layouts/hangout_vertical_hover.svg");
+}
+
+[data-layout-type="hangout_vertical"]:disabled {
+  background-image: url("/images/icons/layouts/hangout_vertical_disabled.svg");
+}
+
+/* Archives */
+
+.bubble [data-icon] {
+  width: 26px;
+  height: 20.8px;
+}
+
+[data-icon="download"] {
+  background-image: url("/images/icons/download.svg");
+}
+
+[data-icon="download"]:hover, [data-icon="download"]:after {
+  background-image: url("/images/icons/download_hover.svg");
+}
+
+[data-icon="delete"] {
+  background-image: url("/images/icons/delete.svg");
+}
+
+[data-icon="delete"]:hover, [data-icon="delete"]:after {
+  background-image: url("/images/icons/delete_hover.svg");
+}
+
+/* Actions */
+
+.buttons [data-icon] {
+  width: 20px;
+  height: 16px;
+}
+
+.video-action {
+  [data-icon="video"], [data-icon="desktop"] {
+    background-image: url("/images/icons/no_video.svg");
+  }
+
+  [data-icon="video"]:hover, [data-icon="desktop"]:hover, [data-icon="video"]:after {
+    background-image: url("/images/icons/no_video_hover.svg");
+  }
+}
+
+.video-action.enabled {
+  [data-icon="video"], [data-icon="desktop"] {
+    background-image: url("/images/icons/video.svg");
+  }
+
+  [data-icon="video"]:hover, [data-icon="desktop"]:hover, [data-icon="video"]:after {
+    background-image: url("/images/icons/video_hover.svg");
+  }
+}
+
+.audio-action {
+  [data-icon="audio"] {
+    background-image: url("/images/icons/no_audio.svg");
+  }
+
+  [data-icon="audio"]:hover, [data-icon="audio"]:after {
+    background-image: url("/images/icons/no_audio_hover.svg");
+  }
+}
+
+.audio-action.enabled {
+  [data-icon="audio"] {
+    background-image: url("/images/icons/audio.svg");
+  }
+
+  [data-icon="audio"]:hover, [data-icon="audio"]:after {
+    background-image: url("/images/icons/audio_hover.svg");
+  }
+}
+
+[data-icon="no_mic"] {
+  background-image: url("/images/icons/no_mic_hover.svg");
+  width: 20px;
+  height: 16px;
+}
+
+[data-stream-type=publisher] .audio-action {
+  [data-icon="mic"] {
+    background-image: url("/images/icons/no_mic.svg");
+  }
+
+  [data-icon="mic"]:hover, [data-icon="mic"]:after {
+    background-image: url("/images/icons/no_mic_hover.svg");
+  }
+}
+
+[data-stream-type=publisher] .audio-action.enabled {
+  [data-icon="mic"] {
+    background-image: url("/images/icons/mic.svg");
+  }
+
+  [data-icon="mic"]:hover, [data-icon="mic"]:after {
+    background-image: url("/images/icons/mic_hover.svg");
+  }
+}
+
+/* Info */
+
+[data-icon="participants"] {
+  background-image: url("/images/icons/participants.svg");
+  width: 20px;
+  @media @smartphones {
+    width: 16px;
+  }  
+  height: 16px;
+}
+
+/* Menu */
+
+.menu [data-icon] {
+  width: 20px;
+  height: 16px;
+}
+
+[data-icon="add"] {
+  background-image: url("/images/icons/add.svg");
+}
+
+[data-icon="archive"] {
+  background-image: url("/images/icons/archive.svg");
+}
+
+:hover > [data-icon="archive"], [data-icon="archive"]:after {
+  background-image: url("/images/icons/archive_hover.svg");
+}
+
+[data-icon="archive_saving"], [data-icon="archive_saving"]:after {
+  background-image: url("/images/icons/archive_saving.svg");
+}
+
+[data-icon="recordings"] {
+  background-image: url("/images/icons/recordings.svg");
+}
+
+:hover > [data-icon="recordings"], [data-icon="recordings"]:after {
+  background-image: url("/images/icons/recordings_hover.svg");
+}
+
+[data-icon="screen"] {
+  background-image: url("/images/icons/screen.svg");
+}
+
+:hover > [data-icon="screen"], [data-icon="screen"]:after {
+  background-image: url("/images/icons/screen_hover.svg");
+}
+
+[data-icon="screen_sharing"], [data-icon="screen_sharing"]:after {
+  background-image: url("/images/icons/screen_sharing.svg");
+}
+
+[data-icon="layouts"] {
+  background-image: url("/images/icons/layouts.svg");
+}
+
+:hover > [data-icon="layouts"], [data-icon="layouts"]:after {
+  background-image: url("/images/icons/layouts_hover.svg");
+}
+
+[data-icon="chat"] {
+  background-image: url("/images/icons/chat.svg");
+}
+
+:hover > [data-icon="chat"], [data-icon="chat"]:after {
+  background-image: url("/images/icons/chat_hover.svg");
+}
+
+[data-icon="end"] {
+  background-image: url("/images/icons/endRed.svg");
+}
+
+:hover > [data-icon="end"], [data-icon="end"]:after {
+  background-image: url("/images/icons/end_hover.svg");
+}
+
+#videoSwitch, #audioSwitch {
+  [data-icon="videoSwitch"], [data-icon="audioSwitch"] {
+    background-image: url("/images/icons/switch_off.svg");
+    width: 30px;
+    height: 24px;
+    vertical-align: text-bottom;
+  }
+}
+
+:hover > #videoSwitch, :hover > #audioSwitch {
+  [data-icon="videoSwitch"], [data-icon="audioSwitch"] {
+    background-image: url("/images/icons/switch_off_hover.svg");
+  }
+}
+
+#videoSwitch.activated,
+#audioSwitch.activated {
+  [data-icon="videoSwitch"], [data-icon="audioSwitch"] {
+    background-image: url("/images/icons/switch_on.svg");
+  }
+}

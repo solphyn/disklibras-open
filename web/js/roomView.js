@@ -445,7 +445,7 @@
       for (var i = 0, l = participantsNumberElem.length; i < l; i++) {
         HTMLElems.replaceText(participantsNumberElem[i], value);
       }
-      HTMLElems.replaceText(participantsStrElem, value === 1 ? 'participant' : 'participants');
+      HTMLElems.replaceText(participantsStrElem, value === 1 ? 'participante' : 'participantes');
     },
 
     set recordingsNumber(value) {

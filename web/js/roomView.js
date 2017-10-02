@@ -19,52 +19,52 @@
 
   var MODAL_TXTS = {
     mute: {
-      head: 'Mute all participants, including yourself',
-      detail: 'Everyone will be notified and can click their <i data-icon="no_mic"></i> to ' +
-              'unmute themselves.',
-      button: 'Mute all participants'
+      head: 'Silenciar todos os participantes, inclusive você mesmo',
+      detail: 'Todos serão notificados e podem clicar em seus <i data-icon="no_mic"></i> to ' +
+              'microfones',
+      button: 'Silenciar todos os participantes'
     },
     muteRemotely: {
-      head: 'All participants microphones are going to be disabled in the call',
-      detail: 'If you want to keep talking , ' +
-              'you must enable manually your own microphone',
-      button: 'I understand'
+      head: 'Todos os microfones participantes serão desativados na chamada',
+      detail: 'Se você quiser continuar falando , ' +
+              'você deve habilitar manualmente seu próprio microfone',
+      button: 'Eu compreendo'
     },
     unmutedRemotely: {
-      head: 'Your microphone is going to be enabled in the call',
-      detail: 'If you want to keep muted , ' +
-              'you must disable manually your own microphone',
-      button: 'I understand'
+      head: 'O seu microfone vai ser ativado na chamada',
+      detail: 'Se você deseja manter silenciado , ' +
+              'você deve desativar manualmente seu próprio microfone',
+      button: 'Eu compreendo'
     },
     join: {
-      head: 'All participants are muted',
-      detail: 'You can unmute everyone by toggling the Mute all participants option. Or you can ' +
-              'unmute just yourself by clicking your <microphone icon> icon',
-      button: 'I understand'
+      head: 'Todos os participantes estão silenciados',
+      detail: 'Você pode desativar todos ao alternar a opção Silenciar todos participantes. Ou você pode ' +
+              'sozinho clicando no seu <microphone icon> icon',
+      button: 'Eu compreendo'
     },
     disabledVideos: {
-      head: 'Stop receiving video from other participants',
-      detail: 'This option can help to improve or preserve call quality in situations of poor ' +
-              'bandwidth or other resource constraints.',
-      button: 'Stop receiving video'
+      head: 'Pare de receber vídeos de outros participantes',
+      detail: 'Esta opção pode ajudar a melhorar ou preservar a qualidade da chamada em situações de baixa ' +
+              'largura de banda ou outras restrições de recursos.',
+      button: 'Pare de receber o vídeo'
     },
     endCall: {
-      head: 'Exit the Meeting',
-      detail: 'You are going to exit the OpenTok Meeting Room. The call will continue with the ' +
-              'remaining participants.',
-      button: 'End meeting'
+      head: 'Sair da chamada',
+      detail: 'Você vai sair do Disk Libras. A ligação continuará com o ' +
+              'participantes restantes.',
+      button: 'Encerrar Chamada'
     },
     sessionDisconnected: {
-      head: 'Session disconected',
-      detail: 'The connection to the OpenTok platform has been lost. Check your network ' +
-              'connectivity and press Reload to connect again.',
-      button: 'Reload'
+      head: 'Sessão desconectada',
+      detail: 'A conexão com a plataforma Disk Libras foi perdida. Verifique sua rede ' +
+              'conectividade e pressione Recarregar para se conectar novamente.',
+      button: 'Recarregar'
     },
     chromePublisherError: {
-      head: 'Internal Chrome Error',
-      detail: 'Failed to acquire microphone. This is a known Chrome bug. Please completely quit ' +
-              'and restart your browser.',
-      button: 'Reload'
+      head: 'Erro interno do Chrome',
+      detail: 'Falha ao adquirir o microfone. Este é um bug conhecido do Chrome. Por favor, saia completamente ' +
+              'e reinicie seu navegador.',
+      button: 'Recarregar'
     }
   };
 

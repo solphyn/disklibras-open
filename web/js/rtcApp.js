@@ -54,7 +54,9 @@
 //*************************************************
 
 /** Close tab or browser */
-$(window).on("beforeunload", function(e) {
+
+
+window.addEventListener("beforeunload", function(e) {
     desconectarUser($('#roomName').val());
 });
 

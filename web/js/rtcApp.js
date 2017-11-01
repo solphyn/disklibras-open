@@ -57,40 +57,47 @@
 
 
 window.addEventListener("beforeunload", function(e) {
-    desconectarUser(document.getElementById('roomName').innerText.replace(/["]/g, ''));
+    desconectarUser(location.search.split('=')[1]);
 });
 
 function desconectarUser(usuario) {
     if (usuario == "atendente") {
-        $.ajax({
-            //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
-            url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,
-            data: {
-                format: 'json'
-            },
-            error: function(data) {
-                console.log("erro exit");
-            },
-            dataType: 'jsonp',
-            success: function(data) {},
-            type: 'GET',
-            async: false
-        });
+        var i = document.createElement("img");
+        i.src = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
+
+        /* $.ajax({
+             //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
+             url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,
+             data: {
+                 format: 'json'
+             },
+             error: function(data) {
+                 console.log("erro exit");
+             },
+             dataType: 'jsonp',
+             success: function(data) {
+                 console.log("sala detruida");
+             },
+             type: 'GET',
+             async: false
+         });*/
     } else {
-        $.ajax({
-            //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
-            url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
-            data: {
-                format: 'json'
-            },
-            error: function(data) {
-                console.log("erro exit");
-            },
-            dataType: 'jsonp',
-            success: function(data) {},
-            type: 'GET',
-            async: false
-        });
+        var i = document.createElement("img");
+        i.src = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
+        /* $.ajax({
+             //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
+             url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
+             data: {
+                 format: 'json'
+             },
+             error: function(data) {
+                 console.log("erro exit");
+             },
+             dataType: 'jsonp',
+             success: function(data) {},
+             type: 'GET',
+             async: false
+         });*/
     }
 }
 

@@ -57,7 +57,7 @@
 
 
 window.addEventListener("beforeunload", function(e) {
-    desconectarUser($('#roomName').val());
+    desconectarUser(document.getElementById('roomName').innerText.replace(/["]/g, ''));
 });
 
 function desconectarUser(usuario) {

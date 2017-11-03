@@ -58,24 +58,22 @@
 
 window.addEventListener("beforeunload", function(e) {
     desconectarUser(location.search.split('=')[1]);
+    var confirmationMessage = "Você foi desconectado";
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage;
 });
 
 function desconectarUser(usuario) {
+    var i = document.createElement("img");
     if (usuario == "atendente") {
-        var i = document.createElement("img");
         i.src = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
-        setTimeout(function() {
-            alert('Você foi desconectado!');
-        }, 1800);
+        for (var i = 0; i < 1000; i++) {}
 
     } else {
-        var i = document.createElement("img");
         i.src = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
-        setTimeout(function() {
-            alert('Você foi desconectado!');
-        }, 1800);
+        for (var i = 0; i < 1000; i++) {}
     }
-    return false;
+    return "Você foi desconectado";
 }
 
 

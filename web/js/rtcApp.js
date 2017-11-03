@@ -55,26 +55,45 @@
 
 /** Close tab or browser */
 
+window.onbeforeunload = function() {
+        var usuario = location.search.split('=')[1];
+        if (usuario == "atendente") {
+            var URL = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
+        } else {
+            var URL = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
+        }
+        var request = null;
 
-window.addEventListener("beforeunload", function(e) {
-    desconectarUser(location.search.split('=')[1]);
-    var confirmationMessage = "Você foi desconectado";
-    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    return confirmationMessage;
-});
+        if (window.XMLHttpRequest) {
+            request = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
 
-function desconectarUser(usuario) {
-    var i = document.createElement("img");
-    if (usuario == "atendente") {
-        i.src = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
-        for (var i = 0; i < 1000; i++) {}
-
-    } else {
-        i.src = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
-        for (var i = 0; i < 1000; i++) {}
+        if (request) {
+            request.open("GET", URL, false);
+            request.send();
+        }
     }
-    return "Você foi desconectado";
-}
+    /*window.addEventListener("beforeunload", function(e) {
+        desconectarUser(location.search.split('=')[1]);
+        var confirmationMessage = "Você foi desconectado";
+        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+        return confirmationMessage;
+    });
+
+    function desconectarUser(usuario) {
+        var i = document.createElement("img");
+        if (usuario == "atendente") {
+            i.src = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
+            for (var i = 0; i < 1000; i++) {}
+
+        } else {
+            i.src = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
+            for (var i = 0; i < 1000; i++) {}
+        }
+        return "Você foi desconectado";
+    }*/
 
 
 

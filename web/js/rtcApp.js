@@ -64,7 +64,7 @@ function desconectarUser(usuario) {
     if (usuario == "atendente") {
         var i = document.createElement("img");
         i.src = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
-        setTimeout(function() {}, 1000);
+        setTimeout(function() {}, 1800);
         /* $.ajax({
              //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
              url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,
@@ -84,7 +84,7 @@ function desconectarUser(usuario) {
     } else {
         var i = document.createElement("img");
         i.src = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
-        setTimeout(function() {}, 1000);
+        setTimeout(function() {}, 1800);
         /* $.ajax({
              //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
              url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,

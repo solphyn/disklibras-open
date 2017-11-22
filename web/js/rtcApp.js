@@ -54,7 +54,7 @@
 //*************************************************
 
 /** Close tab or browser */
-$(window).on("beforeunload", function(e) {
+/*$(window).on("beforeunload", function(e) {
     desconectarUser($('#roomName').val());
 });
 
@@ -75,7 +75,7 @@ function desconectarUser(usuario) {
             async: false
         });
     }
-    /*else {
+    else {
         $.ajax({
             //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
             url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
@@ -91,9 +91,9 @@ function desconectarUser(usuario) {
             async: false
         });
     }
-    */
+    
 }
-
+*/
 
 
 

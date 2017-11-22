@@ -54,45 +54,46 @@
 //*************************************************
 
 /** Close tab or browser */
-$(window).on("beforeunload", function(e) {
-    desconectarUser($('#roomName').val());
-});
 
-function desconectarUser(usuario) {
-    if (usuario == "atendente") {
-        $.ajax({
-            //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
-            url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,
-            data: {
-                format: 'json'
-            },
-            error: function(data) {
-                console.log("erro exit");
-            },
-            dataType: 'jsonp',
-            success: function(data) {},
-            type: 'GET',
-            async: false
-        });
+window.onbeforeunload = function() {
+        var usuario = location.search.split('=')[1];
+        if (usuario == "atendente") {
+            var URL = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
+        } else {
+            var URL = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
+        }
+        var request = null;
+
+        if (window.XMLHttpRequest) {
+            request = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (request) {
+            request.open("GET", URL, false);
+            request.send();
+        }
     }
-    /*else {
-        $.ajax({
-            //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
-            url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
-            data: {
-                format: 'json'
-            },
-            error: function(data) {
-                console.log("erro exit");
-            },
-            dataType: 'jsonp',
-            success: function(data) {},
-            type: 'GET',
-            async: false
-        });
-    }
-    */
-}
+    /*window.addEventListener("beforeunload", function(e) {
+        desconectarUser(location.search.split('=')[1]);
+        var confirmationMessage = "Você foi desconectado";
+        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+        return confirmationMessage;
+    });
+
+    function desconectarUser(usuario) {
+        var i = document.createElement("img");
+        if (usuario == "atendente") {
+            i.src = 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario;
+            for (var i = 0; i < 1000; i++) {}
+
+        } else {
+            i.src = 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario;
+            for (var i = 0; i < 1000; i++) {}
+        }
+        return "Você foi desconectado";
+    }*/
 
 
 

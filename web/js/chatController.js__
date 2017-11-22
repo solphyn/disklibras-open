@@ -136,12 +136,32 @@
             }
         },
         connectionDestroyed: function(evt) {
+            openRoom($('#roomName').val());
             Utils.sendEvent('chatController:presenceEvent', {
                 userName: JSON.parse(evt.connection.data).userName,
                 text: DISCONN_TEXT
             });
         }
     };
+
+    function openRoom(room) {
+        $.ajax({
+            //url: 'http://localhost/0disklibras/api.php/viewrooms/',
+            url: 'https://sistema.disklibras.com.br/api.php/openroom/' + room,
+            data: {
+                format: 'json'
+            },
+            error: function(data) {
+                //window.location.href = "https://disklibras.herokuapp.com/room/"+$room+"?userName=<?php echo $_SESSION['user_name'] ?>";                                
+            },
+            //dataType: 'jsonp',
+            success: function(data) {
+                //lockRoom();
+                //window.location.href = "https://disklibras.herokuapp.com/room/"+$room+"?userName=<?php echo $_SESSION['user_name'] ?>";                               
+            },
+            type: 'GET'
+        });
+    }
     /**
      * Send the event received as a message
      */

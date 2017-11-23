@@ -241,7 +241,7 @@
 
     var viewEventHandlers = {
         endCall: function() {
-            openRoom($('#roomName').text());
+            openRoom($('#roomName').val());
             otHelper.disconnect();
         },
         startArchiving: function(evt) {

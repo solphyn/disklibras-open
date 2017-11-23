@@ -58,7 +58,6 @@
     <script defer src="/js/components/modal.js"></script>
     <script defer src="/js/vendor/lazy_loader.js"></script>
     <script defer src="/js/rtcApp.js"></script>
-	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
 
   <body class="forbidden">
@@ -112,7 +111,7 @@
             </li>
             <% if(!isWebRTCVersion) { %>
             <li>
-              <a id="endCall" class="danger"><i data-icon="end"></i><span>Encerrar Chamada</span></a>
+              <a id="endCall" class="danger"><i data-icon="end"></i><span>Encerrar Atendimento</span></a>
             </li>
             <li class="surrounded bottom tight tooltip" tooltip="Parar video">
               <a id="videoSwitch"><i data-icon="videoSwitch"></i><span>Parar video</span></a>
@@ -128,7 +127,7 @@
               <a id="audioSwitch"><i data-icon="audioSwitch"></i><span>Mudo</span></a>
             </li>
             <li>
-              <a id="endCall" class="danger"><i data-icon="end"></i><span>Encerrar Chamada</span></a>
+              <a id="endCall" class="danger"><i data-icon="end"></i><span>Encerrar Atendimento</span></a>
             </li>
             <!--<li class="bottom tooltip" tooltip="See Documentation">
               <a href="https://tokbox.com/developer/" target="_blank" class="button see-documentation"><span>See Documentation</span></a>
@@ -187,8 +186,8 @@
 
       <section for="addToCall" class="bubble">
         <div class="bubble-content">
-          <p class="title">O link da chamada foi copiado <span class="check-mark">&#10003;</span></p>
-          <p>Compartilhe o link para adicionar outros à chamada</p>
+          <p class="title">O link da Atendimento foi copiado <span class="check-mark">&#10003;</span></p>
+          <p>Compartilhe o link para adicionar outros ao Atendimento</p>
           <input class="block" onclick="this.select();">
         </div>
       </section>
@@ -198,7 +197,7 @@
           <p class="title recordings">Suas gravações arquivadas</p>
           <p class="title no-recordings">Sem gravações arquivadas</p>
           <p class="title loading">Carregando gravações arquivadas ...</p>
-          <p class="subtitle">O acesso às gravações não estará disponível após a chamada.<br>Faça o download da gravação antes de sair da chamada.</p>
+          <p class="subtitle">O acesso às gravações não estará disponível após a Atendimento.<br>Faça o download da gravação antes de sair do Atendimento.</p>
           <hr>
           <div class="tc-list videos">
             <ul></ul>
@@ -243,15 +242,15 @@
         <header>
           <span>Bem-vindo ao</span> <span class="room-name"></span>
         </header>
-        <p>Digite seu nome para participar dessa chamada.</p>
+        <p>Digite seu nome para participar desse Atendimento.</p>
         <input class="block username" placeholder="Enter your name">
         <footer>
-          <button id="enter" class="btn btn-blue btn-padding-large ctaarrow-white">Junte-se à chamada</button>
+          <button id="enter" class="btn btn-blue btn-padding-large ctaarrow-white">Junte-se ao Atendimento</button>
         </footer>
       </form>
     </section>
 
-    <section class="tc-modal feedback-report">
+   <!-- <section class="tc-modal feedback-report">
       <form class="tc-dialog">
         <i data-icon="close_gray" class="close"></i>
         <header>
@@ -293,7 +292,7 @@
           <button class="btn btn-blue btn-padding-large ctaarrow-white report-issue">Report Issue</button>
         </footer>
       </form>
-    </section>
+    </section>-->
 
     <section class="tc-modal archive-delete-modal">
       <form class="tc-dialog">

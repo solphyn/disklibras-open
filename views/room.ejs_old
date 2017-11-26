@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <% if(iosAppId) { %>
+      <meta name="apple-itunes-app" content="app-id=<%=iosAppId%>, app-argument=<%=iosURL%>">
+    <% } %>
+    <title>Disk Libras</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!--[if IE]><link rel="shortcut icon" href="/favicon.ico"><![endif]-->
+    <link rel="icon" href="/favicon.png">
+
+    <link rel="stylesheet" href="/css/endMeeting.opentok.css">
+
+    <% if(isWebRTCVersion) { %>
+      <link rel="stylesheet" href="/css/webrtc.opentok.css">
+    <% } else { %>
+      <link rel="stylesheet" href="/css/room.opentok.css">
+    <% } %>
+
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/<%=chromeExtensionId%>">
+    <link rel="stylesheet" href="https://assets.tokbox.com/solutions/css/style.css">
+    <link rel="stylesheet" href="/css/annotation.opentok.css">
+
+    <script>
+      window.isWebRTCVersion=<%=isWebRTCVersion%>
+      var isMobile = function() { return typeof window.orientation !== 'undefined'; }
+
+      var mobileSettings = function() {
+        document.getElementById("dock").classList.add("collapsed");
+
+        var ids = ['toggleSharing', 'manageRecordings', 'videoSwitch',
+          'audioSwitch', 'showFeedback', 'screenShareErrors'];
+
+        ids.forEach(function(id) {
+          var elem = document.getElementById(id);
+          elem && elem.classList.add('hidden');
+        });
+      };
+
+      window.addEventListener('DOMContentLoaded', function loaded() {
+        window.removeEventListener('DOMContentLoaded', loaded);
+        if (isMobile()) {
+            mobileSettings();
+        }
+      });
+    </script>
+
+    <!--
+    <script type="text/javascript" src="https://static.opentok.com/webrtc/v2/js/opentok.min.js"></script>
+    -->
+    <script defer src="/js/vendor/es6-promise.min.js"></script>
+    <script defer type="text/javascript" src="/js/ie_polyfills.js"></script>
+    <script defer src="/js/vendor/clipboard.min.js"></script>
+    <script defer src="/js/components/bubble.js"></script>
+    <script defer src="/js/components/modal.js"></script>
+    <script defer src="/js/vendor/lazy_loader.js"></script>
+    <script defer src="/js/rtcApp.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body class="forbidden">
+    <section id="dock">
+      <header class="info">
+        <div id="handler">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h1>
+          <span id="roomName"><%= roomName %></span>
+        </h1>
+        <hr>
+        <h2><span class="participants"></span></h2>
+        <h3>
+          <i data-icon="participants"></i><span class="participants"></span><span class="participantsStr"></span>
+        </h3>
+      </header>
+      <nav class="menu tc-sidebar">
+        <div class="tc-list">
+          <ul>
+            <li>
+              <a id="addToCall"><i data-icon="add"></i><span>Adicionar participante</span></a>
+            </li>
+            <% if(!isWebRTCVersion) { %>
+            <% if(enableArchiving) { %>
+            <li id="toggleArchiving" disabled>
+              <a id="startArchiving"><i data-icon="archive"></i><span>Iniciar Gravação</span></a>
+              <a id="stopArchiving"><i data-icon="archive_saving"></i><span class="duration"></span><span>Parar Gravação</span></a>
+            </li>
+            <% if(enableArchiveManager) { %>
+            <li id="manageRecordings">
+              <a id="viewRecordings"><i data-icon="recordings"></i><span>Gerenciar Gravações (<span id="recordings">0</span>)</span></a>
+            </li>
+            <% } %>
+            <% } %>
+            <% if (enableScreensharing) { %>
+            <li id="toggleSharing" disabled>
+              <a id="startSharingDesktop"><i data-icon="screen"></i><span>Compartilhar tela</span></a>
+              <a id="stopSharingDesktop"><i data-icon="screen_sharing"></i><span>Parar compartilhamento</span></a>
+            </li>
+            <% } %>
+            <% } %>
+            <li>
+              <a id="chooseLayout"><i data-icon="layouts"></i><span>Alterar layout</span></a>
+            </li>
+            <li id="toggleChat">
+              <a id="startChat" data-unread-messages="0"><i data-icon="chat"></i><span>Abrir chat<span id="unreadMsg">(<span id="unreadCount">0</span>)</span></span></a>
+              <a id="stopChat"><i data-icon="chat"></i><span>Fechar chat</span></a>
+            </li>
+            <% if(!isWebRTCVersion) { %>
+            <li>
+              <a id="endCall" class="danger"><i data-icon="end"></i><span>Encerrar Chamada</span></a>
+            </li>
+            <li class="surrounded bottom tight tooltip" tooltip="Parar video">
+              <a id="videoSwitch"><i data-icon="videoSwitch"></i><span>Parar video</span></a>
+            </li>
+            <li class="tight tooltip" tooltip="Mudo">
+              <a id="audioSwitch"><i data-icon="audioSwitch"></i><span>Mudo</span></a>
+            </li>
+            <% } else { %>
+            <li class="tooltip" tooltip="Parar video">
+              <a id="videoSwitch"><i data-icon="videoSwitch"></i><span>Parar video</span></a>
+            </li>
+            <li class="tooltip" tooltip="Mudo">
+              <a id="audioSwitch"><i data-icon="audioSwitch"></i><span>Mudo</span></a>
+            </li>
+            <li>
+              <a id="endCall" class="danger"><i data-icon="end"></i><span>Encerrar Chamada</span></a>
+            </li>
+            <!--<li class="bottom tooltip" tooltip="See Documentation">
+              <a href="https://tokbox.com/developer/" target="_blank" class="button see-documentation"><span>See Documentation</span></a>
+            </li>
+            <li class="tooltip" tooltip="Talk to Sales">
+              <a href="https://tokbox.com/contact/sales" target="_blank" class="button talk-to-sales"><span>Talk to Sales</span></a>
+            </li>-->
+            <% } %>
+          </ul>
+        </div>
+      </nav>
+      <% if (enableFeedback) { %>
+     <!-- <footer class="feedback">
+        <a id="showFeedback"><span><span class="plus-icon">[+]</span> Give Demo Feedback</span></a>
+      </footer>-->
+      <% } %>
+    </section>
+
+    <section id="screen">
+      <div class="streams">
+        <div class="tc-list">
+          <ul></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenShareErrors" class="screen-modal tc-modal">
+      <div class="tc-dialog">
+        <i data-icon="close_gray" class="close"></i>
+        <section id="screenShareErrorMsg">
+          <header class="errorTitle"></header>
+          <hr>
+          <p class="errorDescription"></p>
+        </section>
+        <section id="screenShareErrorInstall">
+          <header>Você precisa de uma extensão do Chrome para compartilhar sua tela.</header>
+            <hr>
+            <p>Depois de instalá-lo, atualize seu navegador e clique em 'compartilhar tela' novamente.</p>
+            <footer>
+              <button class="btn btn-blue btn-padding ctaarrow-white delete-archive">Instalar extensão</button>
+            </footer>
+        </section>
+        <section id="extInstallationSuccessful">
+          <header>A extensão do Chrome foi instalada com sucesso.</header>
+          <hr>
+          <p>Você precisa atualizar seu navegador para usá-lo.</p>
+          <footer>
+            <button id="scrShrLater" class="btn btn-white btn-padding ctaarrow-blue">Depois</button>
+            <button id="scrShrReload" class="btn btn-blue btn-padding ctaarrow-white">Recarregar</button>
+          </footer>
+        </section>
+      </div>
+    </section>
+
+    <section class="bubbles">
+
+      <section for="addToCall" class="bubble">
+        <div class="bubble-content">
+          <p class="title">O link da chamada foi copiado <span class="check-mark">&#10003;</span></p>
+          <p>Compartilhe o link para adicionar outros à chamada</p>
+          <input class="block" onclick="this.select();">
+        </div>
+      </section>
+
+      <section for="viewRecordings" class="bubble" data-recordings="loading">
+        <div class="bubble-content">
+          <p class="title recordings">Suas gravações arquivadas</p>
+          <p class="title no-recordings">Sem gravações arquivadas</p>
+          <p class="title loading">Carregando gravações arquivadas ...</p>
+          <p class="subtitle">O acesso às gravações não estará disponível após a chamada.<br>Faça o download da gravação antes de sair da chamada.</p>
+          <hr>
+          <div class="tc-list videos">
+            <ul></ul>
+          </div>
+        </div>
+      </section>
+
+      <section for="chooseLayout" class="bubble">
+        <div class="bubble-content">
+          <ul>
+            <li><a data-layout-type="float"></a></li>
+            <li><a data-layout-type="f2f_horizontal"></a></li>
+            <li><a data-layout-type="grid"></a></li>
+            <li><a data-layout-type="f2f_vertical"></a></li>
+            <li><a data-layout-type="hangout_horizontal"></a></li>
+            <li><a data-layout-type="hangout_vertical"></a></li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <section id="chat">
+      <form class="dialog-chat" id="chatForm">
+        <header>
+          <span>Chat</span>
+          <i id="toggleChat" data-icon="collapse"></i>
+          <i id="closeChat" data-icon="close_white"></i>
+        </header>
+        <div id="chatMsgs" class="tc-list">
+          <ul>
+          </ul>
+        </div>
+        <footer>
+          <textarea id="msgText"></textarea>
+          <button id="sendTxt" type="submit" class="btn btn-blue btn-padding btn-padding-small ctaarrow-white ctaarrow-white-small">Enviar</button>
+        </footer>
+      </form>
+    </section>
+
+    <section class="tc-modal user-name-modal">
+      <form class="tc-dialog">
+        <header>
+          <span>Bem-vindo ao</span> <span class="room-name"></span>
+        </header>
+        <p>Digite seu nome para participar dessa chamada.</p>
+        <input class="block username" placeholder="Enter your name">
+        <footer>
+          <button id="enter" class="btn btn-blue btn-padding-large ctaarrow-white">Junte-se à chamada</button>
+        </footer>
+      </form>
+    </section>
+
+    <section class="tc-modal feedback-report">
+      <form class="tc-dialog">
+        <i data-icon="close_gray" class="close"></i>
+        <header>
+          <span>Demo Feedback Report</span>
+        </header>
+        <section>
+          <label>Audio Score:</label>
+          <div class="tc-dropdown" data-icon="down">
+            <select class="audio-score">
+              <option value="1">Bad. Very annoying.</option>
+              <option value="2">Poor. Annoying.</option>
+              <option value="3" selected="selected">Fair. Slightly annoying.</option>
+              <option value="4">Good. Not perfect but not annoying.</option>
+              <option value="5">Excellent. Imperceptible impairment.</option>
+            </select>
+          </div>
+        </section>
+        <section>
+          <label>Video Score:</label>
+          <div class="tc-dropdown" data-icon="down">
+            <select class="video-score">
+              <option value="1">Bad. Very annoying.</option>
+              <option value="2">Poor. Annoying.</option>
+              <option value="3" selected="selected">Fair. Slightly annoying.</option>
+              <option value="4">Good. Not perfect but not annoying.</option>
+              <option value="5">Excellent. Imperceptible impairment.</option>
+            </select>
+          </div>
+        </section>
+        <section>
+          <label>Other info:</label>
+          <input class="other-info" placeholder="Type additional info optionally">
+        </section>
+        <footer>
+          <button class="btn btn-blue btn-padding-large ctaarrow-white send-feedback">Send</button>
+        </footer>
+        <div class="hero">Report Issue With Demo</div>
+        <footer>
+          <button class="btn btn-blue btn-padding-large ctaarrow-white report-issue">Report Issue</button>
+        </footer>
+      </form>
+    </section>
+
+    <section class="tc-modal archive-delete-modal">
+      <form class="tc-dialog">
+        <i data-icon="close_gray" class="close"></i>
+        <header><span class="username"></span> não será possivel recuperar arquivos apagados</header>
+        <hr>
+        <p>Tem certeza de que deseja excluir este arquivo?</p>
+        <footer>
+          <button class="btn btn-white btn-padding ctaarrow-blue">Cancelar</button>
+          <button class="btn btn-blue btn-padding ctaarrow-white delete-archive">Deletar</button>
+        </footer>
+      </form>
+    </section>
+
+    <section id="switchAlerts" class="tc-modal switch-alert-modal">
+      <form class="tc-dialog">
+        <i data-icon="close_gray" class="close"></i>
+        <header><span class="msg"></span></header>
+        <hr>
+        <p class="detail"></p>
+        <footer>
+          <button class="btn btn-blue btn-padding ctaarrow-white accept"></button>
+        </footer>
+      </form>
+    </section>
+
+    <footer class="main">
+      Powered by CloudMachine & TokBox
+    </footer>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-462500-32', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+  </body>
+</html>

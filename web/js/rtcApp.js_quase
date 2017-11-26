@@ -55,13 +55,13 @@
 
 /** Close tab or browser */
 onbeforeunload = function() {
-    desconectarUser(window.location.search.split('=')[1]);
+    desconectarUser($('#roomName').text());
     return "Sair ?";
 };
 
 
 function desconectarUser(usuario) {
-    if (usuario == window.location.pathname.split('/')[2]) {
+    if (usuario.startsWith("at")) {
         $.ajax({
             //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
             url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,
@@ -77,19 +77,7 @@ function desconectarUser(usuario) {
             async: false
         });
     } else {
-        //inserir jquery
-
         $.ajax({
-            url: 'https://sistema.disklibras.com.br/api.php/openroom/' + window.location.pathname.split('/')[2],
-            data: {
-                format: 'json'
-            },
-            error: function(data) {},
-            success: function(data) {},
-            type: 'GET'
-        });
-
-        /*$.ajax({
             //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
             url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
             data: {
@@ -102,7 +90,7 @@ function desconectarUser(usuario) {
             success: function(data) {},
             type: 'GET',
             async: false
-        });*/
+        });
     }
 
 }

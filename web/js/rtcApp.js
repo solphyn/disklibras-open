@@ -54,10 +54,12 @@
 //*************************************************
 
 /** Close tab or browser */
-$(window).on("beforeunload", function(e) {
+onbeforeunload = function() {
+    //Your code goes here.
     desconectarUser($('#roomName').text());
     return "Sair ?";
-});
+};
+
 
 function desconectarUser(usuario) {
     if (usuario == "atendente") {

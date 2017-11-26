@@ -55,14 +55,13 @@
 
 /** Close tab or browser */
 onbeforeunload = function() {
-    //Your code goes here.
     desconectarUser($('#roomName').text());
     return "Sair ?";
 };
 
 
 function desconectarUser(usuario) {
-    if (usuario == "atendente") {
+    if (usuario.startsWith("at")) {
         $.ajax({
             //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
             url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,

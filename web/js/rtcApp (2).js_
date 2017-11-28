@@ -54,17 +54,9 @@
 //*************************************************
 
 /** Close tab or browser */
-onbeforeunload = function(evt) {
+onbeforeunload = function() {
     desconectarUser(window.location.search.split('=')[1]);
-    var message = 'Sair?';
-    if (typeof evt == 'undefined') {
-        evt = window.event;
-    }
-    if (evt) {
-        evt.returnValue = message;
-    }
-
-    return message;
+    return "Sair ?";
 };
 
 

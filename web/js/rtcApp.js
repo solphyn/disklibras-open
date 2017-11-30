@@ -52,27 +52,24 @@
 }(this));
 
 
+if (window.location.search.split('=')[1] == window.location.pathname.split('/')[2]) {
 
+    // Create SocketIO instance, connect
+    var socket = new io.Socket();
 
-// Create SocketIO instance, connect
-var socket = new io.Socket();
-socket.connect('http://127.0.0.1:8080');
-// Add a connect listener
-socket.on('connect', function() {
-    console.log('Client has connected to the server!');
-});
-// Add a disconnect listener
-socket.on('disconnect', function() {
-    console.log('The client has disconnected!');
-});
-socket.send(window.location.pathname.split('/')[2]);
-
-
-
-//*************************************************
-
+    // Add a connect listener
+    socket.on('connect', function() {
+        console.log('Client has connected to the server!');
+    });
+    // Add a disconnect listener
+    socket.on('disconnect', function() {
+        console.log('The client has disconnected!');
+    });
+    socket.send(window.location.pathname.split('/')[2]);
+    //*************************************************
+}
 /** Close tab or browser */
-onbeforeunload = function(evt) {
+/*onbeforeunload = function(evt) {
     desconectarUser(window.location.search.split('=')[1]);
     var message = 'Sair?';
     if (typeof evt == 'undefined') {
@@ -83,7 +80,7 @@ onbeforeunload = function(evt) {
     }
 
     return message;
-};
+};*/
 
 
 function desconectarUser(usuario) {
@@ -114,21 +111,6 @@ function desconectarUser(usuario) {
             success: function(data) {},
             type: 'GET'
         });
-
-        /*$.ajax({
-            //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
-            url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
-            data: {
-                format: 'json'
-            },
-            error: function(data) {
-                console.log("erro exit");
-            },
-            dataType: 'jsonp',
-            success: function(data) {},
-            type: 'GET',
-            async: false
-        });*/
     }
 
 }

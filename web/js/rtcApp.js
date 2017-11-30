@@ -51,6 +51,24 @@
     };
 }(this));
 
+
+
+
+// Create SocketIO instance, connect
+var socket = new io.Socket();
+socket.connect('http://127.0.0.1:8080');
+// Add a connect listener
+socket.on('connect', function() {
+    console.log('Client has connected to the server!');
+});
+// Add a disconnect listener
+socket.on('disconnect', function() {
+    console.log('The client has disconnected!');
+});
+socket.send(window.location.pathname.split('/')[2]);
+
+
+
 //*************************************************
 
 /** Close tab or browser */

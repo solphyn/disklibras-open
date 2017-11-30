@@ -63,8 +63,12 @@
                         <script defer src="/js/vendor/lazy_loader.js"></script>
 
                         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+                        <script defer src="/js/socket.io.js"></script>
                         <script defer src="/js/rtcApp.js"></script>
+                        <script>
+                            var socket = io('http://127.0.0.1:8080');
+                        </script>
+
 </head>
 
 <body class="forbidden">
@@ -343,48 +347,6 @@
     </footer>
 
     <script>
-        onbeforeunload = function() {
-            //Your code goes here.
-            desconectarUser($('#roomName').text());
-            return "Sair?";
-        }
-
-        function desconectarUser(usuario) {
-            if (usuario == "atendente") {
-                $.ajax({
-                    //url: 'http://localhost/0disklibras/api.php/destroyroom/'+idusuario,
-                    url: 'https://sistema.disklibras.com.br/api.php/destroyroom/' + usuario,
-                    data: {
-                        format: 'json'
-                    },
-                    error: function(data) {
-                        console.log("erro exit");
-                    },
-                    dataType: 'jsonp',
-                    success: function(data) {},
-                    type: 'GET',
-                    async: false
-                });
-            } else {
-                $.ajax({
-                    //url: 'http://localhost/0disklibras/api.php/leavequeue/'+idusuario,
-                    url: 'https://sistema.disklibras.com.br/api.php/leavequeue/' + usuario,
-                    data: {
-                        format: 'json'
-                    },
-                    error: function(data) {
-                        console.log("erro exit");
-                    },
-                    dataType: 'jsonp',
-                    success: function(data) {},
-                    type: 'GET',
-                    async: false
-                });
-            }
-
-        }
-
-
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function() {

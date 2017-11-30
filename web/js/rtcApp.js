@@ -54,10 +54,6 @@
 
 if (window.location.search.split('=')[1] == window.location.pathname.split('/')[2]) {
 
-    // Create SocketIO instance, connect
-    var socket = new io.Socket();
-
-    // Add a connect listener
     socket.on('connect', function() {
         console.log('Client has connected to the server!');
     });

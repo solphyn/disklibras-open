@@ -53,7 +53,7 @@
 
 
 if (window.location.search.split('=')[1] == window.location.pathname.split('/')[2]) {
-    var socket = io('http://54.94.182.215:8080');
+    var socket = io('https://54.94.182.215:8080');
 
     socket.on('connect', function() {
         console.log('Client has connected to the server!');

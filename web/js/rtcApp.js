@@ -51,8 +51,23 @@
     };
 }(this));
 
+var nomedasala = window.location.pathname.split('/')[2];
+var nomedousuario = window.location.search.split('=')[1];
+var socket = io('https://api.disklibras.com.br:8080');
 
-if (window.location.search.split('=')[1] == window.location.pathname.split('/')[2]) {
+socket.on('connect', function() {
+    console.log('Client has connected to the server!');
+});
+// Add a disconnect listener
+socket.on('disconnect', function() {
+    console.log('The client has disconnected!');
+});
+socket.send(nomedasala, nomedousuario);
+//*************************************************
+
+
+
+/* if (window.location.search.split('=')[1] == window.location.pathname.split('/')[2]) {
     var socket = io('https://api.disklibras.com.br:8080');
 
     socket.on('connect', function() {
@@ -64,7 +79,7 @@ if (window.location.search.split('=')[1] == window.location.pathname.split('/')[
     });
     socket.send(window.location.pathname.split('/')[2]);
     //*************************************************
-}
+} */
 /** Close tab or browser */
 /*onbeforeunload = function(evt) {
     desconectarUser(window.location.search.split('=')[1]);

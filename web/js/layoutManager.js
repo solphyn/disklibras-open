@@ -109,7 +109,7 @@
     if (getTotal() > 2) {
       candidateLayout = GRP_LAYOUTS[userLayout] ? layouts[userLayout] : Grid;
     } else {
-      candidateLayout = F2F_LAYOUTS[userLayout] ? layouts[userLayout] : Float;
+      candidateLayout = F2F_LAYOUTS[userLayout] ? layouts[userLayout] : F2FVertical;
     }
 
     return candidateLayout;

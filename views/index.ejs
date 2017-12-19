@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Disk Libras | A comunicação da Inclusão</title>
+    <title>OpenTok</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="css/buttons.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <% if (isWebRTCVersion) { %>
     <link rel="stylesheet" href="css/checkboxes.css" />
 <% } %>
@@ -28,30 +29,49 @@
 
   <body class="forbidden">
     <section class="main">
-      <section>
+      <div id="righthand-container">
+        <div id="righthand-container-cell">
+      <section id="main-content">
 
         <header>
-          <img src="images/disklibras-logo.png" alt="disklibras logo">
+          <% if (!isWebRTCVersion) { %>
+                  <h1>OpenTok Demo by</h1>
+          <% } else { %>
+                  <h1>WebRTC Demo</h1>
+          <% } %>
+          <img src="images/tokbox-log.svg" alt="opentok transparent logo">
+          <% if (isWebRTCVersion) { %>
+                  <h2>Built by TokBox on the OpenTok Platform</h2>
+                  <h3>This WebRTC Demo enables group video conferencing, text chat, screen sharing, and more.</h3>
+          <% } %>
         </header>
-<% if (!isWebRTCVersion) { %>
-       <!-- <h1>Plataforma Disk Libras de Inclusão</h1>-->
-<% } else { %>
-        <h1>WebRTC Demo</h1>
-       <!-- <h2>Plataforma DiskLibras</h2>
-        <h3>This WebRTC Demo enables group video conferencing, text chat, screen sharing, and more</h3>-->
-<% } %>
         <form>
-          <p>
-            <input id="room" class="text-input" value="Disk Libras" placeholder="Entre com o ID ou Nome da chamada ">
-            <input id="user" class="text-input" placeholder="Entre com o seu Nome">
-            <p class="error-room error-text">Por Favor entre com o seu Nome</p>
-          </p>
-          <button id="enter" class="btn tb btn-primary btn-arrow btn-next btn-padding">Iniciar Atendimento</button>
+          <div>
+            <input id="room" class="text-input required" data-wd="roomname">
+            <label id="room-label">Meeting name</label>
+            <p class="error-room error-text">
+              <i data-icon="warning"></i>
+              Please enter a meeting name.
+            </p>
+          </div>
+          <div>
+            <input id="user" class="text-input" data-wd="username">
+            <label id="user-label">Your name</label>
+          </div>
+          <button id="enter" data-wd="enterroom"></button>
         </form>
-        <!--<div class="safari-plug">
+        <div class="landing-more-info">
+          Need help?
+            <a href="https://tokbox.com/" target="_blank">About TokBox</a>
+          /
+            <a href="https://tokbox.com/contact/sales" target="_blank">Contact Sales</a>
+        </div>
+        <div class="safari-plug">
           <a href="https://safari.opentokrtc.com/">Try the WebRTC Demo for Safari.</a>
-        </div>-->
+        </div>
       </section>
+    </div>
+  </div>
     </section>
 
 <% if (isWebRTCVersion) { %>
@@ -59,11 +79,11 @@
       <form class="tc-dialog">
         <i data-icon="close_gray" class="close"></i>
         <header>
-          <span>Termos de Uso</span>
+          <span>Terms of Use</span>
         </header>
-        <p>By accepting our terms of use you acknoledge that you have read the <a target="_blank" href="https://tokbox.com/support/tos">user agreement</a>, and <a target="_blank" href="https://tokbox.com/support/privacy-policy">privacy policy</a>, and you are at least 18 years of age.</p>
+        <p>By accepting our terms of use you acknowledge that you have read the <a target="_blank" href="https://tokbox.com/support/tos">user agreement</a> and <a target="_blank" href="https://tokbox.com/support/privacy-policy">privacy policy</a>, and you are at least 18 years of&nbsp;age.</p>
         <footer>
-          <button id="enter" class="btn tb btn-primary btn-arrow btn-next btn-padding accept">Aceitar e Continuar</button>
+          <button id="enter" class="btn tb btn-primary btn-arrow btn-next btn-padding accept">Accept and Continue</button>
         </footer>
       </form>
     </section>
@@ -74,10 +94,8 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
       ga('create', 'UA-462500-32', 'auto');
       ga('send', 'pageview');
-
     </script>
   </body>
 </html>

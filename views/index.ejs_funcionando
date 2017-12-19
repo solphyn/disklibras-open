@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Disk Libras | A comunicação da Inclusão</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/buttons.css" />
+<% if (isWebRTCVersion) { %>
+    <link rel="stylesheet" href="css/checkboxes.css" />
+<% } %>
+    <link rel="stylesheet" href="css/landing.opentok.css">
+
+    <!--[if IE]><link rel="shortcut icon" href="/favicon.ico"><![endif]-->
+    <link rel="icon" href="/favicon.png">
+
+    <script defer type="text/javascript" src="/js/vendor/es6-promise.min.js"></script>
+    <script defer type="text/javascript" src="/js/ie_polyfills.js"></script>
+    <script defer type="text/javascript" src="/js/components/modal.js"></script>
+    <script defer type="text/javascript" src="/js/vendor/lazy_loader.js"></script>
+    <script defer type="text/javascript" src="/js/rtcApp.js"></script>
+
+    <script>
+      window.isWebRTCVersion=<%=isWebRTCVersion%>
+    </script>
+  </head>
+
+  <body class="forbidden">
+    <section class="main">
+      <section>
+
+        <header>
+          <img src="images/disklibras-logo.png" alt="disklibras logo">
+        </header>
+<% if (!isWebRTCVersion) { %>
+       <!-- <h1>Plataforma Disk Libras de Inclusão</h1>-->
+<% } else { %>
+        <h1>WebRTC Demo</h1>
+       <!-- <h2>Plataforma DiskLibras</h2>
+        <h3>This WebRTC Demo enables group video conferencing, text chat, screen sharing, and more</h3>-->
+<% } %>
+        <form>
+          <p>
+            <input id="room" class="text-input" value="Disk Libras" placeholder="Entre com o ID ou Nome da chamada ">
+            <input id="user" class="text-input" placeholder="Entre com o seu Nome">
+            <p class="error-room error-text">Por Favor entre com o seu Nome</p>
+          </p>
+          <button id="enter" class="btn tb btn-primary btn-arrow btn-next btn-padding">Iniciar Atendimento</button>
+        </form>
+        <!--<div class="safari-plug">
+          <a href="https://safari.opentokrtc.com/">Try the WebRTC Demo for Safari.</a>
+        </div>-->
+      </section>
+    </section>
+
+<% if (isWebRTCVersion) { %>
+    <section class="tc-modal contract">
+      <form class="tc-dialog">
+        <i data-icon="close_gray" class="close"></i>
+        <header>
+          <span>Termos de Uso</span>
+        </header>
+        <p>By accepting our terms of use you acknoledge that you have read the <a target="_blank" href="https://tokbox.com/support/tos">user agreement</a>, and <a target="_blank" href="https://tokbox.com/support/privacy-policy">privacy policy</a>, and you are at least 18 years of age.</p>
+        <footer>
+          <button id="enter" class="btn tb btn-primary btn-arrow btn-next btn-padding accept">Aceitar e Continuar</button>
+        </footer>
+      </form>
+    </section>
+<% } %>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-462500-32', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
